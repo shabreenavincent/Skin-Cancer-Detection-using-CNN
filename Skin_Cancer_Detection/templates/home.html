@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Cancer Detection</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <header class="bg-primary text-white text-center py-5">
+        <h1>Skin Cancer Detection</h1>
+        <p class="lead">Upload an image for diagnosis</p>
+    </header>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-lg">
+                    <div class="card-body text-center">
+                        <h2 class="mb-4">Upload Image</h2>
+                        <form method="POST" enctype="multipart/form-data" action="/showresult">
+                            <div class="form-group">
+                                <input type="file" name="pic" accept="image/*" class="form-control-file mb-4" id="imageInput" required>
+                                <small class="form-text text-muted">Supported formats: JPG, PNG, GIF.</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg">Predict</button>
+                        </form>
+                        <div id="imagePreview" class="mt-4" style="display: none;">
+                            <h3>Image Preview:</h3>
+                            <img id="previewImg" src="#" alt="Image Preview" class="img-fluid rounded border">
+                        </div>
+                        {% if prediction %}
+                        <div class="mt-4">
+                            <h3>Prediction Result:</h3>
+                            <p class="lead">{{ prediction }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center mt-5 mb-4">
+    </footer>
+
+    <script>
+        // Image preview functionality
+        document.getElementById('imageInput').addEventListener('change', function(event) {
+            const input = event.target;
+            const preview = document.getElementById('imagePreview');
+            const previewImg = document.getElementById('previewImg');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImg.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

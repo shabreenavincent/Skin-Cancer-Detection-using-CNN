@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Cancer Detection - Result</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa; /* Light background for better contrast */
+        }
+        header {
+            background-color: #007bff; /* Bootstrap primary color */
+        }
+        .card {
+            margin-top: 30px; /* Spacing above the card */
+            border-radius: 15px; /* Rounded corners for the card */
+        }
+        .btn-link {
+            font-weight: bold; /* Bold for links */
+            color: #007bff; /* Bootstrap primary color */
+        }
+        .btn-link:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <header class="text-white text-center py-5">
+        <h1 class="display-4">Skin Cancer Detection</h1>
+        <p class="lead">Your Diagnosis Results</p>
+    </header>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg">
+                    <div class="card-body text-center">
+                        <h2 class="mb-4">Prediction Result</h2>
+                        <h3 class="text-success">Diagnosed with: <strong>{{ result }}</strong></h3>
+                        <h5>{{ info }}</h5>
+                        <h6 class="text-danger mt-3">DISCLAIMER! Please consult a dermatologist immediately to seek treatment.</h6>
+                        <div class="mt-4">
+                        </div>
+                        <div class="mt-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
